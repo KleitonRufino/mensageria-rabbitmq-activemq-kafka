@@ -1,0 +1,41 @@
+START ZOOKEEPER
+	zookeeper-server-start.bat C:\Users\krufino\Documents\kafka\config\zookeeper.properties
+
+START SERVER 
+	kafka-server-start.bat C:\Users\krufino\Documents\kafka\config\server.properties
+
+LISTAR TOPICS 
+	kafka-topics --bootstrap-server localhost:9092 --list
+
+CRIAR TOPICS
+	kafka-topics --bootstrap-server localhost:9092 --create --topic teste
+	
+	kafka-topics --bootstrap-server localhost:9092 --create --topic teste --partitions 2
+	
+PRODUZIR MSG PARA O TOPICS
+	kafka-console-producer.bat --broker-list localhost:9092 --topic teste
+	
+CONSUMIR MSG	
+	kafka-console-consumer --bootstrap-server localhost:9092 --topic teste
+	
+	kafka-console-consumer --bootstrap-server localhost:9092 --topic teste --from-beginning
+	
+	kafka-console-consumer --bootstrap-server localhost:9092 --topic teste --group grupo1
+
+DETALHE TOPIC
+	kafka-topics --bootstrap-server localhost:9092 --topic teste --describe
+
+AUMENTAR PARTICAO
+	kafka-topics --bootstrap-server localhost:9092 --alter --topic teste --partitions 10
+
+EXCLUIR TOPIC
+	kafka-topics --bootstrap-server localhost:9092 --delete --topic teste 
+
+PRODUCER COM MSG COM CHAVE VALOR
+	kafka-console-producer --broker-list localhost:9092 --topic teste --property "print.key=true" --property "key.separator=,"
+	
+CONSUMER COM MSG COM CHAVE VALOR
+	kafka-console-consumer --bootstrap-server localhost:9092 --topic teste --property "print.key=true" --property "key.separator=," --group grupo1
+	
+MOSTRAR GRUPOS	
+	kafka-consumer-groups.bat --bootstrap-server localhost:9092 --list
