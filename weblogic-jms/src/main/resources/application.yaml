@@ -1,0 +1,8 @@
+spring:
+  jms:
+    broker-url: t3://localhost:7001
+    context-factory: weblogic.jndi.WLInitialContextFactory 
+    jndi-name: jms/myConnectionFactory
+    template:
+      default-destination: jms/myTestQueue
+    
